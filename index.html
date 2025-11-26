@@ -32,35 +32,45 @@
 
         position: relative;
         color: #f9fafb;
+
+        /* CENTRADO EXCELENTE */
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px;
+
+        padding-top: 40px;
+        padding-bottom: 40px;
+
         overflow: hidden;
     }
 
-    /* Overlay oscuro + blur suave */
+    /* Overlay MUCHO más suave */
     body::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at top, rgba(0,0,0,0.15), transparent 40%),
-                    rgba(0,0,0,0.68);
-        backdrop-filter: blur(4px);
+
+        /* MAS CLARO + MENOS OSCURO */
+        background: radial-gradient(circle at top, rgba(0,0,0,0.10) 0%, transparent 40%),
+                    rgba(0,0,0,0.40);
+
+        /* MENOS BLUR */
+        backdrop-filter: blur(1px);
+
         z-index: 0;
     }
 
     /* Orbes Apple Vision Pro */
     .bg-orb {
         position: absolute;
-        width: 420px;
-        height: 420px;
+        width: 380px;
+        height: 380px;
         border-radius: 999px;
-        background: radial-gradient(circle, rgba(236,72,153,0.45), transparent 70%);
-        top: 5%;
-        right: -10%;
-        opacity: 0.9;
-        filter: blur(1px);
+        background: radial-gradient(circle, rgba(236,72,153,0.35), transparent 70%);
+        top: 8%;
+        right: -8%;
+        opacity: 0.8;
+        filter: blur(2px);
         z-index: 0;
         animation: orbFloat 8s ease-in-out infinite alternate;
     }
@@ -68,16 +78,16 @@
     .bg-orb.secondary {
         width: 320px;
         height: 320px;
-        background: radial-gradient(circle, rgba(59,130,246,0.4), transparent 70%);
-        left: -18%;
-        bottom: -10%;
-        opacity: 0.7;
+        background: radial-gradient(circle, rgba(59,130,246,0.28), transparent 70%);
+        left: -12%;
+        bottom: -12%;
+        opacity: 0.65;
         animation-delay: 1.5s;
     }
 
     @keyframes orbFloat {
         0% { transform: translate3d(0,0,0) scale(1); opacity: 0.7; }
-        100% { transform: translate3d(-10px,12px,0) scale(1.05); opacity: 1; }
+        100% { transform: translate3d(-12px,10px,0) scale(1.05); opacity: 1; }
     }
 
     .wrapper {
@@ -86,6 +96,9 @@
         position: relative;
         z-index: 1;
         animation: floatIn 0.7s ease-out;
+
+        /* Céntralo incluso en pantallas altas */
+        margin: 0 auto;
     }
 
     @keyframes floatIn {
@@ -132,7 +145,7 @@
         text-align: center;
         font-size: 24px;
         margin: 0;
-        text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+        text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
     h1 span.highlight {
@@ -146,8 +159,8 @@
         font-size: 14px;
         color: #f9fafb;
         margin-top: 6px;
-        opacity: 0.95;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+        opacity: 0.92;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.7);
     }
 
     /* Emojis Apple 3D */
@@ -168,6 +181,10 @@
         margin-top: 20px;
         position: relative;
         transition: transform 0.15s ease-out;
+
+        /* CENTRADO VISUAL EXTRA */
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .card-border {
@@ -182,7 +199,7 @@
             rgba(249,115,22,1),
             rgba(236,72,153,1)
         );
-        opacity: 0.9;
+        opacity: 0.85;
         z-index: 0;
         filter: drop-shadow(0 18px 40px rgba(0,0,0,0.9));
         background-size: 200% 200%;
@@ -197,22 +214,11 @@
     .card {
         position: relative;
         z-index: 1;
-        background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
+        background: radial-gradient(circle at top left, rgba(15,23,42,0.96), rgba(15,23,42,0.94));
         border-radius: 20px;
         padding: 18px 18px 20px;
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(18px);
         overflow: hidden;
-    }
-
-    .card::before {
-        content: "";
-        position: absolute;
-        width: 180px;
-        height: 180px;
-        background: radial-gradient(circle, rgba(236,72,153,0.28), transparent 70%);
-        top: -60px;
-        left: -40px;
-        opacity: 0.9;
     }
 
     .card-inner { position: relative; z-index: 1; }
@@ -227,12 +233,6 @@
         background: rgba(56,189,248,0.08);
         color: #7dd3fc;
         margin-bottom: 10px;
-        animation: pulseTag 2.2s infinite ease-in-out;
-    }
-
-    @keyframes pulseTag {
-        0%,100% { transform: translateY(0); }
-        50% { transform: translateY(-1px); }
     }
 
     .tag-dot {
@@ -260,22 +260,12 @@
         gap: 4px;
     }
 
-    .badge-discount span.icon-star {
-        font-size: 14px;
-    }
-
     .scratch-container {
         margin-top: 6px;
         border-radius: 16px;
         overflow: hidden;
         position: relative;
         border: 1px solid rgba(148,163,184,0.45);
-        transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
-    }
-
-    .scratch-container:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 24px rgba(0,0,0,0.7);
     }
 
     .scratch-message {
@@ -288,16 +278,8 @@
         text-align: center;
     }
 
-    .scratch-message strong.title {
-        font-size: 16px;
-        color: #7f1d1d;
-        margin-bottom: 6px;
-    }
-
-    .scratch-message span.sub {
-        font-size: 13px;
-        color: #9a3412;
-    }
+    .title { font-size: 16px; color: #7f1d1d; margin-bottom: 6px; }
+    .sub { font-size: 13px; color: #9a3412; }
 
     #scratchCanvas {
         position: absolute;
@@ -335,26 +317,23 @@
         text-decoration: none;
         cursor: pointer;
         font-weight: 600;
-        transition: 0.12s ease;
+        transition: 0.1s ease;
         width: 100%;
     }
 
     .btn-instagram {
         background: radial-gradient(circle at 0 0, #fdf497 0, #fd5949 40%, #d6249f 70%, #285aeb 100%);
         color: white;
-        box-shadow: 0 12px 24px rgba(219,39,119,0.7);
     }
 
     .btn-tienda {
         background: linear-gradient(135deg, #22c55e, #16a34a);
         color: #052e16;
-        box-shadow: 0 12px 24px rgba(34,197,94,0.6);
     }
 
     .btn:hover {
         transform: translateY(-1px) scale(1.01);
-        box-shadow: 0 18px 35px rgba(0,0,0,0.85);
-        filter: brightness(1.03);
+        filter: brightness(1.05);
     }
 
     .small-note {
@@ -362,9 +341,8 @@
         font-size: 11px;
         color: #d1d5db;
         text-align: center;
-        text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        text-shadow: 0 1px 3px rgba(0,0,0,0.7);
         letter-spacing: 0.06em;
-        text-transform: uppercase;
     }
 </style>
 </head>
@@ -387,12 +365,13 @@
         <div class="card-border"></div>
 
         <div class="card">
+
             <div class="badge-discount">
-                <span class="icon-star">★</span>
-                HASTA 30% OFF
+                ★ HASTA 30% OFF
             </div>
 
             <div class="card-inner">
+
                 <div class="tag">
                     <span class="tag-dot"></span>
                     Promo activa · Cupos limitados
@@ -401,13 +380,12 @@
                 <div class="scratch-container">
                     <div class="scratch-message">
                         <strong class="title">
-                            <img class="emoji-3d" loading="lazy"
-                                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png">
+                            <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png">
                             YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO
                         </strong>
+
                         <span class="sub">
-                            <img class="emoji-3d small" loading="lazy"
-                                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png">
+                            <img class="emoji-3d small" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png">
                             Sacá captura de esta pantalla y enviála por Instagram.
                         </span>
                     </div>
@@ -419,23 +397,17 @@
                     <strong>Cómo participar:</strong><br>
                     1) Raspá la tarjeta con tu dedo o mouse.<br>
                     2) Cuando veas el mensaje completo, sacale captura.<br>
-                    3) Tocá el botón de Instagram, seguí la cuenta y enviá la captura por inbox.
+                    3) Tocá el botón de Instagram y enviá la captura por inbox.
                 </div>
 
                 <div class="buttons">
-                    <a class="btn btn-instagram"
-                       href="https://www.instagram.com/vya__indu?igsh=OXBkNWs2NzhidzEy"
-                       target="_blank">
-                        <img class="emoji-3d"
-                             src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png">
+                    <a class="btn btn-instagram" href="https://www.instagram.com/vya__indu" target="_blank">
+                        <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png">
                         <span>Ir al Instagram de VYA</span>
                     </a>
 
-                    <a class="btn btn-tienda"
-                       href="https://vyaindumentaria.com"
-                       target="_blank">
-                        <img class="emoji-3d"
-                             src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd-fe0f.png">
+                    <a class="btn btn-tienda" href="https://vyaindumentaria.com" target="_blank">
+                        <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd-fe0f.png">
                         <span>Ir a la tienda online</span>
                     </a>
                 </div>
@@ -443,6 +415,7 @@
                 <div class="small-note">
                     MOSTRÁ ESTA CAPTURA EN TU PRÓXIMO PEDIDO PARA VALIDAR TU PARTICIPACIÓN.
                 </div>
+
             </div>
         </div>
     </div>
@@ -474,8 +447,8 @@
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, w, h);
 
-        ctx.fillStyle = "#f9fafb";
         ctx.textAlign = "center";
+        ctx.fillStyle = "#f9fafb";
 
         ctx.font = `600 ${Math.max(14, w * 0.055)}px Poppins, Arial`;
         ctx.fillText("RASPÁ AQUÍ", w / 2, h / 2 - 4);
@@ -487,20 +460,11 @@
 
     function getPointerPos(e) {
         const rect = canvas.getBoundingClientRect();
-        let clientX, clientY;
 
-        if (e.touches && e.touches.length > 0) {
-            clientX = e.touches[0].clientX;
-            clientY = e.touches[0].clientY;
-        } else {
-            clientX = e.clientX;
-            clientY = e.clientY;
-        }
+        let x = e.touches ? e.touches[0].clientX : e.clientX;
+        let y = e.touches ? e.touches[0].clientY : e.clientY;
 
-        return {
-            x: clientX - rect.left,
-            y: clientY - rect.top
-        };
+        return { x: x - rect.left, y: y - rect.top };
     }
 
     function startScratch(e) {
@@ -519,20 +483,17 @@
 
     function scratch(e) {
         if (!isDrawing || revealed) return;
-        e.preventDefault();
 
         const { x, y } = getPointerPos(e);
         const radius = canvas.width * 0.07;
 
         ctx.globalCompositeOperation = "destination-out";
         ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
         ctx.fill();
     }
 
     function checkReveal() {
-        if (revealed) return;
-
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         let transparent = 0;
 
@@ -540,12 +501,9 @@
             if (imageData[i] === 0) transparent++;
         }
 
-        const total = imageData.length / 4;
-        const percent = transparent / total;
+        const percent = transparent / (imageData.length / 4);
 
-        if (percent > 0.4) {
-            revealAll();
-        }
+        if (percent > 0.4) revealAll();
     }
 
     function revealAll() {
@@ -556,25 +514,13 @@
     canvas.addEventListener("mousedown", startScratch, { passive: false });
     canvas.addEventListener("mousemove", scratch, { passive: false });
     canvas.addEventListener("mouseup", stopScratch, { passive: false });
-    canvas.addEventListener("mouseleave", stopScratch, { passive: false });
 
     canvas.addEventListener("touchstart", startScratch, { passive: false });
     canvas.addEventListener("touchmove", scratch, { passive: false });
     canvas.addEventListener("touchend", stopScratch, { passive: false });
-    canvas.addEventListener("touchcancel", stopScratch, { passive: false });
 
     window.addEventListener("load", resizeCanvas);
     window.addEventListener("resize", resizeCanvas);
-
-    // Parallax suave
-    const cardWrapper = document.getElementById("cardWrapper");
-
-    window.addEventListener("mousemove", (e) => {
-        if (window.innerWidth < 768) return;
-        const x = (e.clientX / window.innerWidth - 0.5) * 8;
-        const y = (e.clientY / window.innerHeight - 0.5) * 8;
-        cardWrapper.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    });
 </script>
 
 </body>
