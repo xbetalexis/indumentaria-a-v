@@ -5,168 +5,416 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Raspadita de Descuento</title>
 
+<!-- Fuente moderna -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
+    :root {
+        --primary: #ec4899;   /* rosa */
+        --secondary: #6366f1; /* violeta */
+        --accent: #f97316;    /* naranja */
+        --bg-dark: #020617;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
     body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
         margin: 0;
-        padding: 0;
+        min-height: 100vh;
+        font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+        color: #f9fafb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .wrapper {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .brand {
         text-align: center;
-        color: #333;
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #9ca3af;
+        margin-bottom: 8px;
     }
 
     h1 {
-        margin-top: 25px;
-        font-size: 28px;
-        font-weight: bold;
+        text-align: center;
+        font-size: 24px;
+        margin: 0;
+    }
+
+    h1 span.highlight {
+        background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .subtitle {
+        text-align: center;
+        font-size: 14px;
+        color: #e5e7eb;
+        margin-top: 6px;
+        opacity: 0.9;
     }
 
     .card {
-        background: white;
-        width: 90%;
-        max-width: 360px;
-        margin: 25px auto;
-        padding: 20px;
+        margin-top: 18px;
+        background: rgba(15, 23, 42, 0.95);
+        border-radius: 18px;
+        box-shadow: 0 20px 45px rgba(0,0,0,0.55);
+        padding: 18px 18px 20px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        backdrop-filter: blur(16px);
+    }
+
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(56, 189, 248, 0.12);
+        color: #7dd3fc;
+        margin-bottom: 10px;
+    }
+
+    .tag-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 8px #22c55e;
+    }
+
+    .scratch-container {
+        margin-top: 6px;
         border-radius: 16px;
-        box-shadow: 0 0 18px rgba(0,0,0,0.15);
+        overflow: hidden;
+        background: linear-gradient(135deg, #fee2e2, #fef9c3);
+        position: relative;
+        border: 1px solid rgba(148, 163, 184, 0.35);
     }
 
     #scratchCanvas {
         width: 100%;
-        border-radius: 12px;
-        margin-top: 15px;
+        display: block;
     }
 
-    .hidden-message {
-        font-size: 20px;
-        padding: 25px 10px;
+    .instructions {
+        margin-top: 14px;
+        font-size: 13px;
+        color: #e5e7eb;
+        line-height: 1.6;
+    }
+
+    .instructions strong {
+        color: #fbbf24;
+    }
+
+    .hidden-message-box {
+        margin-top: 16px;
+        padding: 12px 12px 10px;
+        border-radius: 14px;
+        border: 1px dashed rgba(251, 191, 36, 0.7);
+        background: radial-gradient(circle at top left, rgba(251, 191, 36, 0.15), transparent),
+                    radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.18), transparent);
         display: none;
+        text-align: left;
+        font-size: 13px;
+    }
+
+    .hidden-message-box-title {
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: #fef9c3;
+    }
+
+    .hidden-message-box p {
+        margin: 4px 0;
+    }
+
+    .hidden-message-box-emoji {
+        font-size: 18px;
+        margin-right: 4px;
     }
 
     .buttons {
-        margin-top: 20px;
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
     }
 
     .btn {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        padding: 13px;
-        font-size: 18px;
-        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 14px;
+        border-radius: 999px;
+        font-size: 15px;
         text-decoration: none;
-        font-weight: bold;
-        color: white;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+        width: 100%;
+    }
+
+    .btn span.icon {
+        font-size: 18px;
     }
 
     .btn-instagram {
-        background: #e1306c;
+        background: radial-gradient(circle at 0 0, #fdf497 0, #fd5949 40%, #d6249f 70%, #285aeb 100%);
+        color: white;
+        box-shadow: 0 12px 20px rgba(219, 39, 119, 0.45);
     }
 
     .btn-tienda {
-        background: #007bff;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: #052e16;
+        box-shadow: 0 12px 20px rgba(34, 197, 94, 0.35);
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 35px rgba(0,0,0,0.4);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+        box-shadow: 0 10px 18px rgba(0,0,0,0.45);
+    }
+
+    .small-note {
+        margin-top: 12px;
+        font-size: 11px;
+        color: #9ca3af;
+        text-align: center;
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 22px;
+        }
     }
 </style>
-
 </head>
 <body>
 
-<h1>🎁 Raspá para ver tu participación 🎁</h1>
+<div class="wrapper">
+    <div class="brand">TU MARCA DE ROPA</div>
+    <h1>Raspá y <span class="highlight">entrás a la ruleta</span></h1>
+    <div class="subtitle">Participá por descuentos exclusivos para tu próxima compra.</div>
 
-<div class="card">
-    <canvas id="scratchCanvas"></canvas>
+    <div class="card">
+        <div class="tag">
+            <span class="tag-dot"></span>
+            Promo activa · Sólo por tiempo limitado
+        </div>
 
-    <div id="premio" class="hidden-message">
-        <strong>🎉 YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO 🎉</strong>
-        <br><br>
-        📸 Sacá captura a esta pantalla.<br>
-        ❤️ Entrá a nuestro Instagram, seguinos y enviá por inbox el premio.
-    </div>
+        <div class="scratch-container">
+            <canvas id="scratchCanvas"></canvas>
+        </div>
 
-    <div class="buttons">
-        <a class="btn btn-instagram" href="https://instagram.com/TU_INSTAGRAM" target="_blank">
-            📸 Ir al Instagram
-        </a>
-        <a class="btn btn-tienda" href="https://TU_TIENDA.com" target="_blank">
-            🛍️ Ir a la tienda
-        </a>
+        <div id="mensajeParticipa" class="hidden-message-box">
+            <div class="hidden-message-box-title">
+                <span class="hidden-message-box-emoji">🎉</span>
+                YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO
+            </div>
+            <p>📸 <strong>Sacá captura</strong> a esta pantalla.</p>
+            <p>📲 <strong>Entrá a nuestro Instagram</strong>, seguinos y enviá por <strong>inbox</strong> la captura de este premio.</p>
+            <p>🛍️ Después, visitá nuestra tienda y aprovechá las promos.</p>
+        </div>
+
+        <div class="instructions">
+            <strong>Cómo participar:</strong><br>
+            1) Raspá la tarjeta con tu dedo (o el mouse).<br>
+            2) Cuando veas el mensaje, sacale captura.<br>
+            3) Hacé clic en Instagram, seguinos y mandá la captura por inbox.
+        </div>
+
+        <div class="buttons">
+            <a class="btn btn-instagram" href="https://instagram.com/TU_INSTAGRAM" target="_blank" rel="noopener noreferrer">
+                <span class="icon">📸</span>
+                <span>Ir al Instagram</span>
+            </a>
+            <a class="btn btn-tienda" href="https://TU_TIENDA.com" target="_blank" rel="noopener noreferrer">
+                <span class="icon">🛍️</span>
+                <span>Ir a la tienda online</span>
+            </a>
+        </div>
+
+        <div class="small-note">
+            Mostrá esta captura en tu próximo pedido para validar la participación.
+        </div>
     </div>
 </div>
 
 <script>
     const canvas = document.getElementById("scratchCanvas");
     const ctx = canvas.getContext("2d");
-    const premioDiv = document.getElementById("premio");
-
-    // Tamaño del canvas
-    canvas.width = 300;
-    canvas.height = 150;
-
-    // Fondo del premio (lo que queda abajo)
-    ctx.fillStyle = "#ffe8e8";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Texto debajo de la raspadita
-    ctx.font = "20px Arial";
-    ctx.fillStyle = "#d63384";
-    ctx.textAlign = "center";
-    ctx.fillText("RASPÁ ACÁ 👇", canvas.width / 2, canvas.height / 2);
-
-    // Capa superior (la que se raspa)
-    let cover = new Image();
-    cover.onload = function () {
-        ctx.globalCompositeOperation = "source-over";
-        ctx.drawImage(cover, 0, 0, canvas.width, canvas.height);
-    };
-    cover.src = "https://i.imgur.com/Idyqk6F.png"; // gris metálico tipo raspadita
+    const mensajeBox = document.getElementById("mensajeParticipa");
 
     let isDrawing = false;
+    let revealed = false;
 
-    function clearScratch() {
-        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        let transparentPixels = 0;
+    function resizeCanvas() {
+        const containerWidth = canvas.parentElement.clientWidth;
+        const baseWidth = 340;
+        const ratio = 0.55; // alto proporcional
 
-        for (let i = 3; i < pixels.length; i += 4) {
-            if (pixels[i] === 0) transparentPixels++;
+        canvas.width = containerWidth || baseWidth;
+        canvas.height = (containerWidth || baseWidth) * ratio;
+
+        drawScratchLayer();
+    }
+
+    function drawScratchLayer() {
+        // Fondo de abajo (lo que se ve mientras raspás)
+        ctx.globalCompositeOperation = "source-over";
+        const w = canvas.width;
+        const h = canvas.height;
+
+        const gradientBg = ctx.createLinearGradient(0, 0, w, h);
+        gradientBg.addColorStop(0, "#fee2e2");
+        gradientBg.addColorStop(1, "#fef9c3");
+        ctx.fillStyle = gradientBg;
+        ctx.fillRect(0, 0, w, h);
+
+        // Texto decorativo debajo de la capa gris
+        ctx.fillStyle = "#b91c1c";
+        ctx.font = `bold ${Math.max(16, w * 0.06)}px Poppins, Arial`;
+        ctx.textAlign = "center";
+        ctx.fillText("RASPÁ PARA PARTICIPAR", w / 2, h / 2 - 6);
+        ctx.fillStyle = "#9f1239";
+        ctx.font = `normal ${Math.max(12, w * 0.038)}px Poppins, Arial`;
+        ctx.fillText("Desbloqueá tu participación", w / 2, h / 2 + 18);
+
+        // Capa gris que se raspa
+        ctx.globalCompositeOperation = "source-over";
+        const gradientCover = ctx.createLinearGradient(0, 0, w, h);
+        gradientCover.addColorStop(0, "#9ca3af");
+        gradientCover.addColorStop(1, "#4b5563");
+        ctx.fillStyle = gradientCover;
+        ctx.fillRect(0, 0, w, h);
+
+        // Texto sobre la capa (para que se vea antes de raspar)
+        ctx.fillStyle = "#e5e7eb";
+        ctx.font = `600 ${Math.max(14, w * 0.045)}px Poppins, Arial`;
+        ctx.textAlign = "center";
+        ctx.fillText("RASPÁ AQUÍ", w / 2, h / 2);
+
+        ctx.font = `normal ${Math.max(11, w * 0.032)}px Poppins, Arial`;
+        ctx.fillStyle = "#d1d5db";
+        ctx.fillText("Usá tu dedo o el mouse", w / 2, h / 2 + 20);
+    }
+
+    function getPointerPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        let clientX, clientY;
+
+        if (e.touches && e.touches.length > 0) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
         }
 
-        // Cuando se borró el 60% muestra el mensaje
-        if (transparentPixels > pixels.length * 0.6) {
-            premioDiv.style.display = "block";
-        }
+        return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+        };
     }
 
     function startScratch(e) {
+        e.preventDefault();
+        if (revealed) return;
         isDrawing = true;
         scratch(e);
     }
 
-    function stopScratch() {
+    function stopScratch(e) {
+        if (e) e.preventDefault();
+        if (!isDrawing) return;
         isDrawing = false;
-        clearScratch();
+        checkReveal();
     }
 
     function scratch(e) {
-        if (!isDrawing) return;
+        if (!isDrawing || revealed) return;
+        e.preventDefault();
 
-        const rect = canvas.getBoundingClientRect();
-        const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-        const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+        const { x, y } = getPointerPos(e);
+        const radius = canvas.width * 0.06; // radio relativo al ancho
 
         ctx.globalCompositeOperation = "destination-out";
         ctx.beginPath();
-        ctx.arc(x, y, 18, 0, Math.PI * 2);
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
         ctx.fill();
     }
 
-    canvas.addEventListener("mousedown", startScratch);
-    canvas.addEventListener("mousemove", scratch);
-    canvas.addEventListener("mouseup", stopScratch);
-    canvas.addEventListener("mouseleave", stopScratch);
+    function checkReveal() {
+        if (revealed) return;
 
-    canvas.addEventListener("touchstart", startScratch);
-    canvas.addEventListener("touchmove", scratch);
-    canvas.addEventListener("touchend", stopScratch);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imageData.data;
+        let transparent = 0;
+
+        // Contamos píxeles transparentes (alpha = 0)
+        for (let i = 3; i < pixels.length; i += 4) {
+            if (pixels[i] === 0) {
+                transparent++;
+            }
+        }
+
+        const total = pixels.length / 4;
+        const percent = transparent / total;
+
+        // Con que raspó ~40% ya alcanza
+        if (percent > 0.4) {
+            revealMessage();
+        }
+    }
+
+    function revealMessage() {
+        revealed = true;
+        // Borramos completamente la capa de raspado
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        mensajeBox.style.display = "block";
+    }
+
+    // Eventos mouse
+    canvas.addEventListener("mousedown", startScratch, { passive: false });
+    canvas.addEventListener("mousemove", scratch, { passive: false });
+    canvas.addEventListener("mouseup", stopScratch, { passive: false });
+    canvas.addEventListener("mouseleave", stopScratch, { passive: false });
+
+    // Eventos touch
+    canvas.addEventListener("touchstart", startScratch, { passive: false });
+    canvas.addEventListener("touchmove", scratch, { passive: false });
+    canvas.addEventListener("touchend", stopScratch, { passive: false });
+    canvas.addEventListener("touchcancel", stopScratch, { passive: false });
+
+    // Inicializar
+    window.addEventListener("load", resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
 </script>
 
 </body>
