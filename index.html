@@ -39,7 +39,7 @@
         overflow: hidden;
     }
 
-    /* Overlay oscuro + leve blur para que todo resalte */
+    /* Overlay oscuro + blur suave */
     body::before {
         content: "";
         position: absolute;
@@ -50,7 +50,7 @@
         z-index: 0;
     }
 
-    /* Glow suave en el fondo */
+    /* Glow suave rosa/violeta */
     body::after {
         content: "";
         position: absolute;
@@ -379,11 +379,15 @@
                     <!-- MENSAJE QUE SE VE AL RASPADO -->
                     <div class="scratch-message">
                         <strong class="title">
-                            <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png" alt="Fiesta">
+                            <img class="emoji-3d" loading="lazy"
+                                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png"
+                                alt="Fiesta">
                             YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO
                         </strong>
                         <span class="sub">
-                            <img class="emoji-3d small" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png" alt="Cámara">
+                            <img class="emoji-3d small" loading="lazy"
+                                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png"
+                                alt="Cámara">
                             Sacá captura de esta pantalla y enviála por Instagram.
                         </span>
                     </div>
@@ -400,12 +404,21 @@
                 </div>
 
                 <div class="buttons">
-                    <a class="btn btn-instagram" href="https://www.instagram.com/vya__indu?igsh=OXBkNWs2NzhidzEy" target="_blank" rel="noopener noreferrer">
-                        <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png" alt="Cámara">
+                    <a class="btn btn-instagram"
+                       href="https://www.instagram.com/vya__indu?igsh=OXBkNWs2NzhidzEy"
+                       target="_blank" rel="noopener noreferrer">
+                        <img class="emoji-3d" loading="lazy"
+                             src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png"
+                             alt="Cámara">
                         <span>Ir al Instagram de VYA</span>
                     </a>
-                    <a class="btn btn-tienda" href="https://vyaindumentaria.com" target="_blank" rel="noopener noreferrer">
-                        <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd.png" alt="Bolsas de compras">
+
+                    <a class="btn btn-tienda"
+                       href="https://vyaindumentaria.com"
+                       target="_blank" rel="noopener noreferrer">
+                        <img class="emoji-3d" loading="lazy"
+                             src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd-fe0f.png"
+                             alt="Bolsas de compras">
                         <span>Ir a la tienda online</span>
                     </a>
                 </div>
