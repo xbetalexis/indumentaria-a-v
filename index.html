@@ -26,7 +26,6 @@
         min-height: 100vh;
         font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
-        /* FOTO DE FONDO (tu imagen en GitHub) */
         background: url("https://raw.githubusercontent.com/xbetalexis/indumentaria-a-v/main/WhatsApp%20Image%202025-11-26%20at%2013.37.13.jpeg") no-repeat center center fixed;
         background-size: cover;
 
@@ -45,23 +44,39 @@
         position: absolute;
         inset: 0;
         background: radial-gradient(circle at top, rgba(0,0,0,0.15), transparent 40%),
-                    rgba(0,0,0,0.65);
-        backdrop-filter: blur(3px);
+                    rgba(0,0,0,0.68);
+        backdrop-filter: blur(4px);
         z-index: 0;
     }
 
-    /* Glow suave rosa/violeta */
-    body::after {
-        content: "";
+    /* Orbe glow animado tipo Apple */
+    .bg-orb {
         position: absolute;
         width: 420px;
         height: 420px;
-        background: radial-gradient(circle, rgba(236,72,153,0.35), transparent 70%);
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(236,72,153,0.45), transparent 70%);
         top: 5%;
-        right: -5%;
+        right: -10%;
         opacity: 0.9;
         filter: blur(1px);
         z-index: 0;
+        animation: orbFloat 8s ease-in-out infinite alternate;
+    }
+
+    .bg-orb.secondary {
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(circle, rgba(59,130,246,0.4), transparent 70%);
+        left: -18%;
+        bottom: -10%;
+        opacity: 0.7;
+        animation-delay: 1.5s;
+    }
+
+    @keyframes orbFloat {
+        0% { transform: translate3d(0,0,0) scale(1); opacity: 0.7; }
+        100% { transform: translate3d(-10px,12px,0) scale(1.05); opacity: 1; }
     }
 
     .wrapper {
@@ -70,6 +85,7 @@
         position: relative;
         z-index: 1;
         animation: floatIn 0.7s ease-out;
+        will-change: transform;
     }
 
     @keyframes floatIn {
@@ -81,17 +97,17 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 4px 10px;
+        padding: 4px 12px;
         border-radius: 999px;
-        background: rgba(15,23,42,0.85);
+        background: rgba(15,23,42,0.9);
         border: 1px solid rgba(148,163,184,0.6);
         font-size: 11px;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: #e5e7eb;
         margin: 0 auto 10px;
         display: table;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        box-shadow: 0 10px 26px rgba(0,0,0,0.7);
     }
 
     .top-chip-dot {
@@ -151,25 +167,42 @@
     .card-wrapper {
         margin-top: 20px;
         position: relative;
+        will-change: transform;
+        transition: transform 0.15s ease-out;
     }
 
+    /* Borde degradado animado */
     .card-border {
         position: absolute;
         inset: -1.5px;
         border-radius: 22px;
-        background: linear-gradient(135deg, rgba(236,72,153,0.9), rgba(129,140,248,0.9), rgba(249,115,22,0.85));
-        opacity: 0.85;
+        background: conic-gradient(
+            from 0deg,
+            rgba(236,72,153,1),
+            rgba(129,140,248,1),
+            rgba(56,189,248,1),
+            rgba(249,115,22,1),
+            rgba(236,72,153,1)
+        );
+        opacity: 0.9;
         z-index: 0;
-        filter: drop-shadow(0 18px 40px rgba(0,0,0,0.85));
+        filter: drop-shadow(0 18px 40px rgba(0,0,0,0.9));
+        background-size: 200% 200%;
+        animation: borderFlow 6s linear infinite;
+    }
+
+    @keyframes borderFlow {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
     }
 
     .card {
         position: relative;
         z-index: 1;
-        background: radial-gradient(circle at top left, rgba(15,23,42,0.96), rgba(15,23,42,0.96));
+        background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
         border-radius: 20px;
         padding: 18px 18px 20px;
-        backdrop-filter: blur(18px);
+        backdrop-filter: blur(20px);
         overflow: hidden;
     }
 
@@ -178,7 +211,7 @@
         position: absolute;
         width: 180px;
         height: 180px;
-        background: radial-gradient(circle, rgba(236,72,153,0.22), transparent 70%);
+        background: radial-gradient(circle, rgba(236,72,153,0.28), transparent 70%);
         top: -60px;
         left: -40px;
         opacity: 0.9;
@@ -228,11 +261,13 @@
         font-weight: 600;
         box-shadow: 0 10px 20px rgba(0,0,0,0.65);
         z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
     }
 
-    .badge-discount span {
+    .badge-discount span.icon-star {
         font-size: 14px;
-        margin-right: 2px;
     }
 
     .scratch-container {
@@ -241,6 +276,12 @@
         overflow: hidden;
         position: relative;
         border: 1px solid rgba(148, 163, 184, 0.45);
+        transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    }
+
+    .scratch-container:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.7);
     }
 
     .scratch-message {
@@ -304,7 +345,7 @@
         outline: none;
         cursor: pointer;
         font-weight: 600;
-        transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+        transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
         width: 100%;
     }
 
@@ -321,12 +362,13 @@
     }
 
     .btn:hover {
-        transform: translateY(-1px);
+        transform: translateY(-1px) scale(1.01);
         box-shadow: 0 18px 35px rgba(0,0,0,0.85);
+        filter: brightness(1.03);
     }
 
     .btn:active {
-        transform: translateY(0);
+        transform: translateY(0) scale(0.995);
         box-shadow: 0 10px 18px rgba(0,0,0,0.9);
     }
 
@@ -336,37 +378,38 @@
         color: #d1d5db;
         text-align: center;
         text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
     }
 
     @media (max-width: 480px) {
-        h1 {
-            font-size: 22px;
-        }
-        .badge-discount {
-            top: 10px;
-            right: 10px;
-        }
+        h1 { font-size: 22px; }
+        .badge-discount { top: 10px; right: 10px; }
     }
 </style>
 </head>
 <body>
 
+<div class="bg-orb"></div>
+<div class="bg-orb secondary"></div>
+
 <div class="wrapper">
     <div class="top-chip">
         <span class="top-chip-dot"></span>
-        NUEVA ACCIÓN EXCLUSIVA
+        CLIENTE VIP · ACCIÓN EXCLUSIVA
     </div>
 
     <div class="brand">VYA INDUMENTARIA</div>
     <h1>Raspá y <span class="highlight">entrás a la ruleta</span></h1>
     <div class="subtitle">Descuentos especiales para tu próxima compra online.</div>
 
-    <div class="card-wrapper">
+    <div class="card-wrapper" id="cardWrapper">
         <div class="card-border"></div>
 
         <div class="card">
             <div class="badge-discount">
-                <span>★</span> HASTA 30% OFF
+                <span class="icon-star">★</span>
+                HASTA 30% OFF
             </div>
 
             <div class="card-inner">
@@ -424,7 +467,7 @@
                 </div>
 
                 <div class="small-note">
-                    Mostrá esta captura en tu próximo pedido para validar tu participación.
+                    MOSTRÁ ESTA CAPTURA EN TU PRÓXIMO PEDIDO PARA VALIDAR TU PARTICIPACIÓN.
                 </div>
             </div>
         </div>
@@ -432,6 +475,7 @@
 </div>
 
 <script>
+    // ----- Raspadita -----
     const canvas = document.getElementById("scratchCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -548,6 +592,16 @@
 
     window.addEventListener("load", resizeCanvas);
     window.addEventListener("resize", resizeCanvas);
+
+    // ----- Parallax suave en la card (solo desktop) -----
+    const cardWrapper = document.getElementById("cardWrapper");
+
+    window.addEventListener("mousemove", (e) => {
+        if (window.innerWidth < 768) return; // no en celu
+        const x = (e.clientX / window.innerWidth - 0.5) * 8;  // -4 a 4
+        const y = (e.clientY / window.innerHeight - 0.5) * 8; // -4 a 4
+        cardWrapper.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    });
 </script>
 
 </body>
