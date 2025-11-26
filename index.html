@@ -26,7 +26,8 @@
         min-height: 100vh;
         font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
-        background: url("https://raw.githubusercontent.com/xbetalexis/indumentaria-a-v/main/WhatsApp%20Image%202025-11-26%20at%2013.37.13.jpeg") no-repeat center center fixed;
+        /* FONDO NUEVO */
+        background: url("https://raw.githubusercontent.com/xbetalexis/indumentaria-a-v/main/Captura%20de%20pantalla%20(110).PNG") no-repeat center center fixed;
         background-size: cover;
 
         position: relative;
@@ -49,7 +50,7 @@
         z-index: 0;
     }
 
-    /* Orbe glow animado tipo Apple */
+    /* Orbes Apple Vision Pro */
     .bg-orb {
         position: absolute;
         width: 420px;
@@ -85,7 +86,6 @@
         position: relative;
         z-index: 1;
         animation: floatIn 0.7s ease-out;
-        will-change: transform;
     }
 
     @keyframes floatIn {
@@ -167,11 +167,9 @@
     .card-wrapper {
         margin-top: 20px;
         position: relative;
-        will-change: transform;
         transition: transform 0.15s ease-out;
     }
 
-    /* Borde degradado animado */
     .card-border {
         position: absolute;
         inset: -1.5px;
@@ -215,13 +213,9 @@
         top: -60px;
         left: -40px;
         opacity: 0.9;
-        z-index: 0;
     }
 
-    .card-inner {
-        position: relative;
-        z-index: 1;
-    }
+    .card-inner { position: relative; z-index: 1; }
 
     .tag {
         display: inline-flex;
@@ -237,8 +231,8 @@
     }
 
     @keyframes pulseTag {
-        0%, 100% { transform: translateY(0); box-shadow: 0 0 0 rgba(56,189,248,0.0); }
-        50% { transform: translateY(-1px); box-shadow: 0 0 16px rgba(56,189,248,0.35); }
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-1px); }
     }
 
     .tag-dot {
@@ -275,7 +269,7 @@
         border-radius: 16px;
         overflow: hidden;
         position: relative;
-        border: 1px solid rgba(148, 163, 184, 0.45);
+        border: 1px solid rgba(148,163,184,0.45);
         transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
     }
 
@@ -321,9 +315,7 @@
         text-shadow: 0 1px 4px rgba(0,0,0,0.8);
     }
 
-    .instructions strong {
-        color: #fbbf24;
-    }
+    .instructions strong { color: #fbbf24; }
 
     .buttons {
         margin-top: 18px;
@@ -341,35 +333,28 @@
         border-radius: 999px;
         font-size: 15px;
         text-decoration: none;
-        border: none;
-        outline: none;
         cursor: pointer;
         font-weight: 600;
-        transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+        transition: 0.12s ease;
         width: 100%;
     }
 
     .btn-instagram {
         background: radial-gradient(circle at 0 0, #fdf497 0, #fd5949 40%, #d6249f 70%, #285aeb 100%);
         color: white;
-        box-shadow: 0 12px 24px rgba(219, 39, 119, 0.7);
+        box-shadow: 0 12px 24px rgba(219,39,119,0.7);
     }
 
     .btn-tienda {
         background: linear-gradient(135deg, #22c55e, #16a34a);
         color: #052e16;
-        box-shadow: 0 12px 24px rgba(34, 197, 94, 0.6);
+        box-shadow: 0 12px 24px rgba(34,197,94,0.6);
     }
 
     .btn:hover {
         transform: translateY(-1px) scale(1.01);
         box-shadow: 0 18px 35px rgba(0,0,0,0.85);
         filter: brightness(1.03);
-    }
-
-    .btn:active {
-        transform: translateY(0) scale(0.995);
-        box-shadow: 0 10px 18px rgba(0,0,0,0.9);
     }
 
     .small-note {
@@ -380,11 +365,6 @@
         text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         letter-spacing: 0.06em;
         text-transform: uppercase;
-    }
-
-    @media (max-width: 480px) {
-        h1 { font-size: 22px; }
-        .badge-discount { top: 10px; right: 10px; }
     }
 </style>
 </head>
@@ -419,23 +399,19 @@
                 </div>
 
                 <div class="scratch-container">
-                    <!-- MENSAJE QUE SE VE AL RASPADO -->
                     <div class="scratch-message">
                         <strong class="title">
                             <img class="emoji-3d" loading="lazy"
-                                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png"
-                                alt="Fiesta">
+                                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png">
                             YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO
                         </strong>
                         <span class="sub">
                             <img class="emoji-3d small" loading="lazy"
-                                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png"
-                                alt="Cámara">
+                                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png">
                             Sacá captura de esta pantalla y enviála por Instagram.
                         </span>
                     </div>
 
-                    <!-- CAPA GRIS PARA RASPADO -->
                     <canvas id="scratchCanvas"></canvas>
                 </div>
 
@@ -449,19 +425,17 @@
                 <div class="buttons">
                     <a class="btn btn-instagram"
                        href="https://www.instagram.com/vya__indu?igsh=OXBkNWs2NzhidzEy"
-                       target="_blank" rel="noopener noreferrer">
-                        <img class="emoji-3d" loading="lazy"
-                             src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png"
-                             alt="Cámara">
+                       target="_blank">
+                        <img class="emoji-3d"
+                             src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png">
                         <span>Ir al Instagram de VYA</span>
                     </a>
 
                     <a class="btn btn-tienda"
                        href="https://vyaindumentaria.com"
-                       target="_blank" rel="noopener noreferrer">
-                        <img class="emoji-3d" loading="lazy"
-                             src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd-fe0f.png"
-                             alt="Bolsas de compras">
+                       target="_blank">
+                        <img class="emoji-3d"
+                             src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd-fe0f.png">
                         <span>Ir a la tienda online</span>
                     </a>
                 </div>
@@ -475,7 +449,6 @@
 </div>
 
 <script>
-    // ----- Raspadita -----
     const canvas = document.getElementById("scratchCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -593,13 +566,13 @@
     window.addEventListener("load", resizeCanvas);
     window.addEventListener("resize", resizeCanvas);
 
-    // ----- Parallax suave en la card (solo desktop) -----
+    // Parallax suave
     const cardWrapper = document.getElementById("cardWrapper");
 
     window.addEventListener("mousemove", (e) => {
-        if (window.innerWidth < 768) return; // no en celu
-        const x = (e.clientX / window.innerWidth - 0.5) * 8;  // -4 a 4
-        const y = (e.clientY / window.innerHeight - 0.5) * 8; // -4 a 4
+        if (window.innerWidth < 768) return;
+        const x = (e.clientX / window.innerWidth - 0.5) * 8;
+        const y = (e.clientY / window.innerHeight - 0.5) * 8;
         cardWrapper.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     });
 </script>
