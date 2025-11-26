@@ -26,14 +26,13 @@
         min-height: 100vh;
         font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
-        /* FONDO NUEVO */
-        background: url("https://raw.githubusercontent.com/xbetalexis/indumentaria-a-v/main/Captura%20de%20pantalla%20(110).PNG") no-repeat center center fixed;
+        /* FONDO NUEVO: vyaww.PNG */
+        background: url("https://raw.githubusercontent.com/xbetalexis/indumentaria-a-v/main/vyaww.PNG") no-repeat center center fixed;
         background-size: cover;
 
         position: relative;
         color: #f9fafb;
 
-        /* CENTRADO EXCELENTE */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -44,23 +43,20 @@
         overflow: hidden;
     }
 
-    /* Overlay MUCHO más suave */
+    /* Overlay más suave */
     body::before {
         content: "";
         position: absolute;
         inset: 0;
 
-        /* MAS CLARO + MENOS OSCURO */
         background: radial-gradient(circle at top, rgba(0,0,0,0.10) 0%, transparent 40%),
                     rgba(0,0,0,0.40);
 
-        /* MENOS BLUR */
         backdrop-filter: blur(1px);
-
         z-index: 0;
     }
 
-    /* Orbes Apple Vision Pro */
+    /* Orbes glow */
     .bg-orb {
         position: absolute;
         width: 380px;
@@ -96,8 +92,6 @@
         position: relative;
         z-index: 1;
         animation: floatIn 0.7s ease-out;
-
-        /* Céntralo incluso en pantallas altas */
         margin: 0 auto;
     }
 
@@ -181,8 +175,6 @@
         margin-top: 20px;
         position: relative;
         transition: transform 0.15s ease-out;
-
-        /* CENTRADO VISUAL EXTRA */
         margin-left: auto;
         margin-right: auto;
     }
@@ -365,7 +357,6 @@
         <div class="card-border"></div>
 
         <div class="card">
-
             <div class="badge-discount">
                 ★ HASTA 30% OFF
             </div>
