@@ -1,1 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raspadita de Descuento</title>
 
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #333;
+    }
+
+    h1 {
+        margin-top: 25px;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .card {
+        background: white;
+        width: 90%;
+        max-width: 360px;
+        margin: 25px auto;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 0 18px rgba(0,0,0,0.15);
+    }
+
+    #scratchCanvas {
+        width: 100%;
+        border-radius: 12px;
+        margin-top: 15px;
+    }
+
+    .hidden-message {
+        font-size: 20px;
+        padding: 25px 10px;
+        display: none;
+    }
+
+    .buttons {
+        margin-top: 20px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 13px;
+        font-size: 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        color: white;
+    }
+
+    .btn-instagram {
+        background: #e1306c;
+    }
+
+    .btn-tienda {
+        background: #007bff;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>🎁 Raspá para ver tu participación 🎁</h1>
+
+<div class="card">
+    <canvas id="scratchCanvas"></canvas>
+
+    <div id="premio" class="hidden-message">
+        <strong>🎉 YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO 🎉</strong>
+        <br><br>
+        📸 Sacá captura a esta pantalla.<br>
+        ❤️ Entrá a nuestro Instagram, seguinos y enviá por inbox el premio.
+    </div>
+
+    <div class="buttons">
+        <a class="btn btn-instagram" href="https://instagram.com/TU_INSTAGRAM" target="_blank">
+            📸 Ir al Instagram
+        </a>
+        <a class="btn btn-tienda" href="https://TU_TIENDA.com" target="_blank">
+            🛍️ Ir a la tienda
+        </a>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById("scratchCanvas");
+    const ctx = canvas.getContext("2d");
+    const premioDiv = document.getElementById("premio");
+
+    // Tamaño del canvas
+    canvas.width = 300;
+    canvas.height = 150;
+
+    // Fondo del premio (lo que queda abajo)
+    ctx.fillStyle = "#ffe8e8";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Texto debajo de la raspadita
+    ctx.font = "20px Arial";
+    ctx.fillStyle = "#d63384";
+    ctx.textAlign = "center";
+    ctx.fillText("RASPÁ ACÁ 👇", canvas.width / 2, canvas.height / 2);
+
+    // Capa superior (la que se raspa)
+    let cover = new Image();
+    cover.onload = function () {
+        ctx.globalCompositeOperation = "source-over";
+        ctx.drawImage(cover, 0, 0, canvas.width, canvas.height);
+    };
+    cover.src = "https://i.imgur.com/Idyqk6F.png"; // gris metálico tipo raspadita
+
+    let isDrawing = false;
+
+    function clearScratch() {
+        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        let transparentPixels = 0;
+
+        for (let i = 3; i < pixels.length; i += 4) {
+            if (pixels[i] === 0) transparentPixels++;
+        }
+
+        // Cuando se borró el 60% muestra el mensaje
+        if (transparentPixels > pixels.length * 0.6) {
+            premioDiv.style.display = "block";
+        }
+    }
+
+    function startScratch(e) {
+        isDrawing = true;
+        scratch(e);
+    }
+
+    function stopScratch() {
+        isDrawing = false;
+        clearScratch();
+    }
+
+    function scratch(e) {
+        if (!isDrawing) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        ctx.arc(x, y, 18, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    canvas.addEventListener("mousedown", startScratch);
+    canvas.addEventListener("mousemove", scratch);
+    canvas.addEventListener("mouseup", stopScratch);
+    canvas.addEventListener("mouseleave", stopScratch);
+
+    canvas.addEventListener("touchstart", startScratch);
+    canvas.addEventListener("touchmove", scratch);
+    canvas.addEventListener("touchend", stopScratch);
+</script>
+
+</body>
+</html>
