@@ -134,7 +134,20 @@
         text-shadow: 0 2px 6px rgba(0,0,0,0.8);
     }
 
-    /* CARD PRINCIPAL: glass + borde degradado premium */
+    /* Emojis Apple 3D */
+    .emoji-3d {
+        width: 26px;
+        height: 26px;
+        vertical-align: -4px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+    }
+
+    .emoji-3d.small {
+        width: 22px;
+        height: 22px;
+        vertical-align: -3px;
+    }
+
     .card-wrapper {
         margin-top: 20px;
         position: relative;
@@ -203,7 +216,6 @@
         box-shadow: 0 0 9px #22c55e;
     }
 
-    /* Badge de descuento premium */
     .badge-discount {
         position: absolute;
         top: 12px;
@@ -231,7 +243,6 @@
         border: 1px solid rgba(148, 163, 184, 0.45);
     }
 
-    /* Mensaje debajo de la raspadita */
     .scratch-message {
         padding: 18px 14px;
         min-height: 140px;
@@ -253,7 +264,6 @@
         color: #9a3412;
     }
 
-    /* Capa gris que se raspa (canvas) */
     #scratchCanvas {
         position: absolute;
         inset: 0;
@@ -296,10 +306,6 @@
         font-weight: 600;
         transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
         width: 100%;
-    }
-
-    .btn span.icon {
-        font-size: 18px;
     }
 
     .btn-instagram {
@@ -372,8 +378,14 @@
                 <div class="scratch-container">
                     <!-- MENSAJE QUE SE VE AL RASPADO -->
                     <div class="scratch-message">
-                        <strong class="title">🎉 YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO 🎉</strong>
-                        <span class="sub">📸 Sacá captura de esta pantalla y enviála por Instagram.</span>
+                        <strong class="title">
+                            <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png" alt="Fiesta">
+                            YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO
+                        </strong>
+                        <span class="sub">
+                            <img class="emoji-3d small" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png" alt="Cámara">
+                            Sacá captura de esta pantalla y enviála por Instagram.
+                        </span>
                     </div>
 
                     <!-- CAPA GRIS PARA RASPADO -->
@@ -389,11 +401,11 @@
 
                 <div class="buttons">
                     <a class="btn btn-instagram" href="https://www.instagram.com/vya__indu?igsh=OXBkNWs2NzhidzEy" target="_blank" rel="noopener noreferrer">
-                        <span class="icon">📸</span>
+                        <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png" alt="Cámara">
                         <span>Ir al Instagram de VYA</span>
                     </a>
                     <a class="btn btn-tienda" href="https://vyaindumentaria.com" target="_blank" rel="noopener noreferrer">
-                        <span class="icon">🛍️</span>
+                        <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd.png" alt="Bolsas de compras">
                         <span>Ir a la tienda online</span>
                     </a>
                 </div>
