@@ -23,7 +23,7 @@
         min-height: 100vh;
         font-family: "Poppins", sans-serif;
 
-        /* FONDO NUEVO */
+        /* FONDO vyaww.PNG */
         background: url("https://raw.githubusercontent.com/xbetalexis/indumentaria-a-v/main/vyaww.PNG") no-repeat center center fixed;
         background-size: cover;
 
@@ -43,10 +43,8 @@
         content: "";
         position: absolute;
         inset: 0;
-
         background: radial-gradient(circle at top, rgba(0,0,0,0.10) 0%, transparent 40%),
                     rgba(0,0,0,0.40);
-
         backdrop-filter: blur(1px);
         z-index: 0;
     }
@@ -105,6 +103,7 @@
         font-size: 11px;
         letter-spacing: .18em;
         color: #e5e7eb;
+        text-transform: uppercase;
     }
 
     .brand {
@@ -113,6 +112,7 @@
         letter-spacing: .26em;
         margin-bottom: 4px;
         text-shadow: 0 2px 6px rgba(0,0,0,.7);
+        text-transform: uppercase;
     }
 
     h1 {
@@ -195,6 +195,15 @@
         margin-bottom: 10px;
     }
 
+    .tag-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 9px #22c55e;
+        display: inline-block;
+    }
+
     .badge-discount {
         position: absolute;
         top: 12px;
@@ -205,8 +214,11 @@
         background: linear-gradient(45deg,#f97316,#ec4899);
         color: #fff7ed;
         font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .06em;
     }
 
+    /* --- PREMIO (DENTRO DE LA RASPADITA) --- */
     .scratch-container {
         margin-top: 6px;
         border-radius: 16px;
@@ -216,10 +228,34 @@
     }
 
     .scratch-message {
-        padding: 18px 14px;
+        padding: 18px 16px 20px;
         min-height: 140px;
-        background: radial-gradient(circle at top left, #fee2e2, #fef9c3);
+        background: #fff7ed;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .prize-icon {
+        margin-bottom: 8px;
+    }
+
+    .prize-title {
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: #0f172a;
+        line-height: 1.4;
+        margin-bottom: 6px;
+    }
+
+    .prize-sub {
+        font-size: 13px;
+        color: #475569;
+        line-height: 1.5;
     }
 
     #scratchCanvas {
@@ -289,25 +325,28 @@
             <div class="badge-discount">★ HASTA 30% OFF</div>
 
             <div class="tag">
-                <span style="background:#22c55e;width:8px;height:8px;border-radius:99px;display:inline-block;"></span>
+                <span class="tag-dot"></span>
                 Promo activa · Cupos limitados
             </div>
 
             <div class="scratch-container">
                 <div class="scratch-message">
-                    <strong class="title">
-                        <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png">
-                        YA ESTÁS PARTICIPANDO PARA LA RULETA DE DESCUENTO
-                    </strong>
-                    <span class="sub">
-                        <img class="emoji-3d small" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png">
+                    <div class="prize-icon">
+                        <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png" alt="Fiesta">
+                    </div>
+                    <div class="prize-title">
+                        YA ESTÁS PARTICIPANDO<br>
+                        PARA LA RULETA DE DESCUENTO
+                    </div>
+                    <div class="prize-sub">
+                        <img class="emoji-3d small" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png" alt="Cámara">
                         Sacá captura de esta pantalla y enviála por Instagram.
-                    </span>
+                    </div>
                 </div>
                 <canvas id="scratchCanvas"></canvas>
             </div>
 
-            <!-- NUEVOS PASOS -->
+            <!-- PASOS NUEVOS -->
             <div class="instructions">
                 <strong>Cómo participar:</strong><br>
                 1) Raspá la tarjeta hasta revelar el premio.<br>
@@ -318,12 +357,12 @@
 
             <div class="buttons">
                 <a class="btn btn-instagram" href="https://www.instagram.com/vya__indu" target="_blank">
-                    <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png">
+                    <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f4f8.png" alt="Instagram">
                     Ir al Instagram de VYA
                 </a>
 
                 <a class="btn btn-tienda" href="https://vyaindumentaria.com" target="_blank">
-                    <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd-fe0f.png">
+                    <img class="emoji-3d" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f6cd-fe0f.png" alt="Tienda">
                     Ir a la tienda online
                 </a>
             </div>
